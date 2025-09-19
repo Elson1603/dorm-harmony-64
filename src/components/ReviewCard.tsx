@@ -57,9 +57,14 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
   return (
     <Card className="w-full max-w-md border bg-card text-card-foreground shadow-sm">
       <CardHeader className="flex flex-row items-center gap-4">
-        <Avatar>
-          <AvatarImage src={avatarUrl} />
-          <AvatarFallback className="bg-muted">{name.charAt(0).toUpperCase()}</AvatarFallback>
+        <Avatar className="h-12 w-12 border-2 border-primary/20">
+          <AvatarImage 
+            src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name)}&background=%23ffffff`}
+            className="object-cover"
+          />
+          <AvatarFallback className="bg-primary/5 text-primary">
+            {name.split(' ').map(n => n[0]).join('')}
+          </AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
           <h3 className="text-lg font-semibold">{name}</h3>

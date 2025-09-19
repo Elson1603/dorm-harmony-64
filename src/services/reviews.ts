@@ -14,7 +14,7 @@ export const ReviewsService = {
           rating: 5,
           date: "2025-09-15",
           review: "Amazing dormitory experience! The facilities are top-notch and the staff is incredibly helpful.",
-          avatarUrl: "/placeholder.svg"
+          avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=John%20Doe&background=%23ffffff`
         },
         {
           id: '2',
@@ -22,7 +22,7 @@ export const ReviewsService = {
           rating: 4.5,
           date: "2025-09-10",
           review: "Great community atmosphere and well-maintained rooms. Could improve the WiFi speed though.",
-          avatarUrl: "/placeholder.svg"
+          avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=Jane%20Smith&background=%23ffffff`
         },
         {
           id: '3',
@@ -30,7 +30,7 @@ export const ReviewsService = {
           rating: 5,
           date: "2025-09-05",
           review: "The security measures and cleanliness standards are excellent. Highly recommend!",
-          avatarUrl: "/placeholder.svg"
+          avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=Mike%20Johnson&background=%23ffffff`
         }
       ];
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initialReviews));
@@ -39,12 +39,17 @@ export const ReviewsService = {
     return JSON.parse(storedReviews);
   },
 
+  generateAvatarUrl: (name: string) => {
+    return `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name)}&background=%23ffffff`;
+  },
+
   addReview: (review: Omit<Review, 'id' | 'date'>): Review => {
     const reviews = ReviewsService.getReviews();
     const newReview: Review = {
       ...review,
       id: Date.now().toString(),
       date: new Date().toISOString().split('T')[0],
+      avatarUrl: ReviewsService.generateAvatarUrl(review.name)
     };
     
     const updatedReviews = [newReview, ...reviews];
