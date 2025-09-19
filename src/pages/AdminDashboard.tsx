@@ -94,12 +94,12 @@ function AdminDashboard() {
       <div className="absolute inset-0 bg-black/60 z-0" />
       <div className="relative z-10">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary-light to-accent-light/80 backdrop-blur-md bg-white/10">
+      <div className="bg-gradient-to-r from-primary-dark/80 to-accent-dark/80 backdrop-blur-md">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
             Admin Dashboard
           </h1>
-          <p className="text-white/90 drop-shadow">
+          <p className="text-gray-100/90 drop-shadow">
             Manage your dormitory operations and monitor key metrics
           </p>
         </div>

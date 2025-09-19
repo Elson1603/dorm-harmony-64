@@ -151,7 +151,7 @@ function HomePage() {
           Your Home Away From <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">Home</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-white/90 text-center max-w-2xl mx-auto drop-shadow">
-            Experience comfortable, modern living at CampusView Dormitories. Where students thrive, friendships bloom, and memories are made.
+            Experience comfortable, modern living at CampusView Dormitories.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/rooms">

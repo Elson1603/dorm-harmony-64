@@ -260,9 +260,8 @@ const GalleryPage = () => {
       <Dialog 
         open={!!selectedImage} 
         onOpenChange={() => setSelectedImage(null)}
-        className="max-w-7xl mx-auto"
       >
-        <DialogContent className="max-w-7xl w-full">
+        <DialogContent className="max-w-7xl w-full mx-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center justify-between">
               <span className="text-2xl">{selectedImage?.title}</span>

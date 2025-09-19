@@ -38,7 +38,7 @@ const App = () => (
             <Route path="/faq" element={<FAQPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
-            <Route path="/gallery" element={<Gallery />} />
+          
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
