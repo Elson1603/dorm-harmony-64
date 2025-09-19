@@ -27,7 +27,7 @@ const featuredRooms = [
     price: 850,
     capacity: 1,
     available: true,
-    image: "Deluxe-Single-thumb.jpg",
+    image: "/dorm-harmony-64/public/Deluxe-Single-thumb.jpg",
     amenities: ["Wi-Fi", "AC", "Parking"],
     rating: 4.8,
     reviews: 124,
