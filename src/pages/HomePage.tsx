@@ -17,7 +17,7 @@ import {
   MapPin,
   Clock
 } from "lucide-react";
-import heroImage from "@/assets/hero-building.jpg";
+import heroImage from "@/assets/hero-dormitory.jpg";
 // If you want to use the new building image, place it in assets and import as:
 // import heroBg from "@/assets/your-building-image.jpg";
 import deluxeRoomImage from "@/assets/Deluxe-Single-thumb.jpg";
@@ -148,7 +148,7 @@ function HomePage() {
         </div>
         <div className="relative z-10 flex flex-col items-center justify-center w-full px-4">
           <h1 className="text-5xl md:text-7xl font-extrabold mb-4 text-white text-center drop-shadow-lg">
-            Your Home Away From <span className="bg-gradient-to-r from-blue-500 to-orange-400 bg-clip-text text-transparent">Home</span>
+          Your Home Away From <span className="bg-gradient-to-r from-blue-300 to-orange-300 bg-clip-text text-transparent">Home</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-white/90 text-center max-w-2xl mx-auto drop-shadow">
             Experience comfortable, modern living at CampusView Dormitories. Where students thrive, friendships bloom, and memories are made.
@@ -156,7 +156,7 @@ function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/rooms">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-3 shadow-lg">
-                Explore Rooms <ArrowRight className="ml-2 h-5 w-5" />
+             Explore Rooms <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button size="lg" variant="outline" className="bg-white/20 border border-white/60 text-white hover:bg-white/30 hover:text-white text-lg px-8 py-3 shadow-lg backdrop-blur">
@@ -171,7 +171,7 @@ function HomePage() {
               <div className="text-white/90 text-center text-sm">5 minutes walk to campus and city center</div>
             </div>
             <div className="flex-1 min-w-[260px] bg-white/20 backdrop-blur rounded-2xl p-6 flex flex-col items-center shadow-lg border border-white/30">
-              <Users className="text-blue-400 mb-2" size={32} />
+              <Users className="text-blue-300 mb-2" size={32} />
               <div className="font-bold text-lg text-white mb-1">Community Living</div>
               <div className="text-white/90 text-center text-sm">Join 500+ students in our vibrant community</div>
             </div>

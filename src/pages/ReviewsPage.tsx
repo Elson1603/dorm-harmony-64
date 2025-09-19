@@ -75,7 +75,7 @@ export const ReviewsPage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4 text-foreground">Resident Reviews</h1>
+        <h1 className="text-4xl font-bold mb-4">Resident <span className="gradient-word animate-gradient">Reviews</span></h1>
         <p className="text-xl text-muted-foreground mb-8">
           See what our residents have to say about their experience
         </p>

@@ -12,7 +12,7 @@ export default function LocationPage() {
         </div>
         <div className="relative z-10 text-center text-white px-4 max-w-2xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg flex items-center justify-center gap-2">
-            <MapPin className="inline-block h-10 w-10 text-accent" /> Location & Map
+            <MapPin className="inline-block h-10 w-10 text-accent" /> Location & <span className="gradient-word animate-gradient">Map</span>
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white/90">
             Find us easily and explore nearby landmarks, transport options, and accessibility features.

@@ -31,8 +31,8 @@ export default function FAQPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-12">
         <HelpCircle className="w-16 h-16 mx-auto mb-4 text-primary" />
-        <h1 className="text-4xl font-bold mb-4 text-foreground">
-          Frequently Asked Questions
+        <h1 className="text-4xl font-bold mb-4">
+          Frequently Asked <span className="gradient-word animate-gradient">Questions</span>
         </h1>
         <p className="text-xl text-muted-foreground mb-8">
           Find answers to common questions about our dormitory
