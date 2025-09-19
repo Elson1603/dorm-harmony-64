@@ -9,32 +9,52 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 25% 27%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 27%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 27%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 25 90% 60%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 100% 50%;
+
+    /* Custom design tokens */
+    --primary-light: 210 100% 95%;
+    --primary-dark: 210 100% 40%;
+    --accent-light: 25 90% 95%;
+    --accent-dark: 25 90% 50%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 50%), hsl(195 100% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 90% 60%), hsl(35 90% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 100% 95%) 0%, hsl(195 100% 98%) 100%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 12px -2px hsl(210 100% 50% / 0.08);
+    --shadow-card-hover: 0 8px 25px -5px hsl(210 100% 50% / 0.15);
+    --shadow-feature: 0 10px 40px -10px hsl(210 100% 50% / 0.2);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -100,6 +120,87 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer utilities {
+  /* Room card animations */
+  .room-card {
+    @apply transition-all duration-300 ease-out;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .room-card:hover {
+    @apply scale-[1.02];
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Feature card styles */
+  .feature-card {
+    @apply bg-gradient-to-br from-primary-light to-white border border-border/50;
+    box-shadow: var(--shadow-feature);
+  }
+
+  /* Button variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-primary-dark text-primary-foreground 
+           hover:shadow-lg hover:scale-105 transition-all duration-300;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent to-accent-dark text-accent-foreground
+           hover:shadow-lg hover:scale-105 transition-all duration-300;
+  }
+
+  /* Typography */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
