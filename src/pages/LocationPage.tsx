@@ -67,6 +67,7 @@ export default function LocationPage() {
           </div>
         </div>
       </main>
+        // No currency values found in this file. If you add any, use ₹ instead of $.
     </div>
   );
 }
