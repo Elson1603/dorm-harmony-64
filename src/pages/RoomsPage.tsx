@@ -142,13 +142,13 @@ export default function RoomsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-light/10 dark:to-accent-light/10 py-16">
+      <section className="bg-gradient-to-r from-primary-light to-accent-light py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h1 className="heading-xl text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Find Your Perfect Room
             </h1>
-            <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Browse our available dormitory rooms and find the perfect space for your academic journey
             </p>
           </div>
@@ -157,7 +157,7 @@ export default function RoomsPage() {
 
       <div className="container mx-auto px-4 py-8">
         {/* Search and Filters */}
-        <Card className="card-enhanced mb-8">
+        <Card className="mb-8">
           <CardContent className="p-6">
             <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
               {/* Search */}
@@ -167,16 +167,16 @@ export default function RoomsPage() {
                   placeholder="Search rooms by name or type..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9 rounded-2xl"
+                  className="pl-9"
                 />
               </div>
 
               {/* Sort */}
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-full lg:w-48 rounded-2xl">
+                <SelectTrigger className="w-full lg:w-48">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
-                <SelectContent className="rounded-2xl">
+                <SelectContent>
                   <SelectItem value="price-low">Price: Low to High</SelectItem>
                   <SelectItem value="price-high">Price: High to Low</SelectItem>
                   <SelectItem value="rating">Highest Rated</SelectItem>
@@ -188,7 +188,7 @@ export default function RoomsPage() {
               <Button 
                 variant="outline" 
                 onClick={() => setShowFilters(!showFilters)}
-                className="w-full lg:w-auto rounded-2xl hover:scale-105 transition-all duration-300"
+                className="w-full lg:w-auto"
               >
                 <SlidersHorizontal className="mr-2 h-4 w-4" />
                 Filters
@@ -197,12 +197,12 @@ export default function RoomsPage() {
 
             {/* Filters */}
             {showFilters && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-border animate-scale-in">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-border">
                 <Select value={filterType} onValueChange={setFilterType}>
-                  <SelectTrigger className="rounded-2xl">
+                  <SelectTrigger>
                     <SelectValue placeholder="Room Type" />
                   </SelectTrigger>
-                  <SelectContent className="rounded-2xl">
+                  <SelectContent>
                     <SelectItem value="all">All Types</SelectItem>
                     <SelectItem value="Single">Single Occupancy</SelectItem>
                     <SelectItem value="Double">Double Occupancy</SelectItem>
@@ -211,10 +211,10 @@ export default function RoomsPage() {
                 </Select>
 
                 <Select value={filterCapacity} onValueChange={setFilterCapacity}>
-                  <SelectTrigger className="rounded-2xl">
+                  <SelectTrigger>
                     <SelectValue placeholder="Capacity" />
                   </SelectTrigger>
-                  <SelectContent className="rounded-2xl">
+                  <SelectContent>
                     <SelectItem value="all">Any Capacity</SelectItem>
                     <SelectItem value="1">1 Person</SelectItem>
                     <SelectItem value="2">2 People</SelectItem>
@@ -223,10 +223,10 @@ export default function RoomsPage() {
                 </Select>
 
                 <Select value={filterAvailability} onValueChange={setFilterAvailability}>
-                  <SelectTrigger className="rounded-2xl">
+                  <SelectTrigger>
                     <SelectValue placeholder="Availability" />
                   </SelectTrigger>
-                  <SelectContent className="rounded-2xl">
+                  <SelectContent>
                     <SelectItem value="all">All Rooms</SelectItem>
                     <SelectItem value="available">Available Only</SelectItem>
                     <SelectItem value="occupied">Occupied Only</SelectItem>
@@ -240,16 +240,16 @@ export default function RoomsPage() {
         {/* Results Summary */}
         <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
           <div className="flex flex-wrap items-center gap-4">
-            <h2 className="heading-md text-foreground">
+            <h2 className="text-2xl font-semibold text-foreground">
               {filteredRooms.length} Rooms Found
             </h2>
             <div className="flex gap-2">
-              <Badge variant="outline" className="flex items-center gap-1 rounded-2xl">
+              <Badge variant="outline" className="flex items-center gap-1">
                 <Building2 className="h-3 w-3" />
                 {availableCount} Available
               </Badge>
               {priceRange.min > 0 && (
-                <Badge variant="outline" className="flex items-center gap-1 rounded-2xl">
+                <Badge variant="outline" className="flex items-center gap-1">
                   <DollarSign className="h-3 w-3" />
                   ${priceRange.min} - ${priceRange.max}
                 </Badge>
@@ -266,16 +266,15 @@ export default function RoomsPage() {
             ))}
           </div>
         ) : (
-          <Card className="card-enhanced p-12 text-center">
+          <Card className="p-12 text-center">
             <CardContent className="p-0">
               <Building2 className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
-              <h3 className="heading-md text-foreground mb-2">No rooms found</h3>
-              <p className="body-base text-muted-foreground mb-4">
+              <h3 className="text-xl font-semibold text-foreground mb-2">No rooms found</h3>
+              <p className="text-muted-foreground mb-4">
                 Try adjusting your search criteria or filters to find more rooms.
               </p>
               <Button 
                 variant="outline" 
-                className="rounded-2xl hover:scale-105 transition-all duration-300"
                 onClick={() => {
                   setSearchTerm("");
                   setFilterType("all");

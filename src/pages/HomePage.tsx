@@ -124,13 +124,13 @@ export default function HomePage() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="heading-xl mb-6 animate-fade-in text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
             Your Home Away From Home
           </h1>
-          <p className="body-lg mb-8 text-white/90 animate-slide-up">
+          <p className="text-xl md:text-2xl mb-8 text-white/90 animate-slide-up">
             Modern, comfortable, and affordable dormitory living for students. 
             Experience community, convenience, and academic excellence.
           </p>
@@ -142,11 +142,7 @@ export default function HomePage() {
               </Button>
             </Link>
             <Link to="/contact">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="bg-white/10 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3 rounded-2xl backdrop-blur-sm hover:scale-105 transition-all duration-300"
-              >
+              <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3">
                 Schedule Tour
               </Button>
             </Link>
@@ -155,24 +151,24 @@ export default function HomePage() {
       </section>
 
       {/* Quick Stats */}
-      <section className="py-16 bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-light/10 dark:to-accent-light/10">
+      <section className="py-16 bg-primary-light/30">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="animate-fade-in">
               <div className="text-3xl md:text-4xl font-bold text-primary mb-2">500+</div>
-              <div className="text-muted-foreground body-base">Happy Residents</div>
+              <div className="text-muted-foreground">Happy Residents</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-3xl md:text-4xl font-bold text-primary mb-2">120</div>
-              <div className="text-muted-foreground body-base">Available Rooms</div>
+              <div className="text-muted-foreground">Available Rooms</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-3xl md:text-4xl font-bold text-primary mb-2">4.8</div>
-              <div className="text-muted-foreground body-base">Average Rating</div>
+              <div className="text-muted-foreground">Average Rating</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-muted-foreground body-base">Support Available</div>
+              <div className="text-muted-foreground">Support Available</div>
             </div>
           </div>
         </div>
@@ -182,10 +178,10 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="heading-lg text-foreground mb-4">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
               Why Choose <span className="text-gradient">DormHub</span>?
             </h2>
-            <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               We provide everything you need for a comfortable and successful academic journey
             </p>
           </div>
@@ -194,13 +190,13 @@ export default function HomePage() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <Card key={index} className="feature-card text-center group">
-                  <CardContent className="p-6">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Card key={index} className="feature-card border-0 p-6 text-center hover:shadow-lg transition-all duration-300">
+                  <CardContent className="p-0">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                       <Icon className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="heading-md mb-3 text-foreground">{feature.title}</h3>
-                    <p className="body-base text-muted-foreground">{feature.description}</p>
+                    <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                    <p className="text-muted-foreground">{feature.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -210,11 +206,11 @@ export default function HomePage() {
       </section>
 
       {/* Featured Rooms */}
-      <section className="py-20 bg-muted/30 dark:bg-muted/10">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="heading-lg text-foreground mb-4">Featured Rooms</h2>
-            <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Featured Rooms</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Discover our most popular room types and find your perfect living space
             </p>
           </div>
@@ -240,16 +236,16 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="heading-lg text-foreground mb-4">What Students Say</h2>
-            <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-foreground mb-4">What Students Say</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Real experiences from our dormitory community
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="card-enhanced">
-                <CardContent className="p-6">
+              <Card key={index} className="border-border/50 p-6">
+                <CardContent className="p-0">
                   <div className="flex items-center mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star 
@@ -258,7 +254,7 @@ export default function HomePage() {
                       />
                     ))}
                   </div>
-                  <p className="body-base text-muted-foreground mb-4 italic">"{testimonial.content}"</p>
+                  <p className="text-muted-foreground mb-4 italic">"{testimonial.content}"</p>
                   <div>
                     <div className="font-semibold text-foreground">{testimonial.name}</div>
                     <div className="text-sm text-muted-foreground">{testimonial.role}</div>
@@ -273,24 +269,20 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary-dark text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="heading-lg mb-4 text-primary-foreground">Ready to Make DormHub Your Home?</h2>
-          <p className="body-lg mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4">Ready to Make DormHub Your Home?</h2>
+          <p className="text-xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
             Join hundreds of students who have chosen DormHub for their academic journey. 
             Secure your spot today!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-3 rounded-2xl hover:scale-105 transition-all duration-300">
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
                 <Clock className="mr-2 h-5 w-5" />
                 Schedule Tour
               </Button>
             </Link>
             <Link to="/rooms">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3 rounded-2xl hover:scale-105 transition-all duration-300"
-              >
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3">
                 <Building2 className="mr-2 h-5 w-5" />
                 Browse Rooms
               </Button>

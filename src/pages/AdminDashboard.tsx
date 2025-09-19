@@ -85,12 +85,12 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-light/10 dark:to-accent-light/10">
+      <div className="bg-gradient-to-r from-primary-light to-accent-light">
         <div className="container mx-auto px-4 py-8">
-          <h1 className="heading-lg text-foreground mb-2">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
             Admin Dashboard
           </h1>
-          <p className="body-base text-muted-foreground">
+          <p className="text-muted-foreground">
             Manage your dormitory operations and monitor key metrics
           </p>
         </div>
@@ -99,7 +99,7 @@ export default function AdminDashboard() {
       <div className="container mx-auto px-4 py-8">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="card-enhanced">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Rooms</CardTitle>
               <Building2 className="h-4 w-4 text-muted-foreground" />
@@ -112,7 +112,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="card-enhanced">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Occupancy Rate</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
@@ -125,7 +125,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="card-enhanced">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Pending Inquiries</CardTitle>
               <MessageSquare className="h-4 w-4 text-muted-foreground" />
@@ -138,7 +138,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="card-enhanced">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
               <Star className="h-4 w-4 text-muted-foreground" />
@@ -154,18 +154,18 @@ export default function AdminDashboard() {
 
         {/* Main Content Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 rounded-2xl">
-            <TabsTrigger value="overview" className="rounded-2xl">Overview</TabsTrigger>
-            <TabsTrigger value="inquiries" className="rounded-2xl">Inquiries</TabsTrigger>
-            <TabsTrigger value="reviews" className="rounded-2xl">Reviews</TabsTrigger>
-            <TabsTrigger value="rooms" className="rounded-2xl">Room Management</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="inquiries">Inquiries</TabsTrigger>
+            <TabsTrigger value="reviews">Reviews</TabsTrigger>
+            <TabsTrigger value="rooms">Room Management</TabsTrigger>
           </TabsList>
 
           {/* Overview Tab */}
           <TabsContent value="overview" className="space-y-6">
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Revenue Card */}
-              <Card className="card-enhanced">
+              <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <TrendingUp className="h-5 w-5 text-primary" />
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
                   <p className="text-sm text-muted-foreground mb-4">
                     +12.5% from last month
                   </p>
-                  <Button variant="outline" size="sm" className="rounded-2xl hover:scale-105 transition-all duration-300">
+                  <Button variant="outline" size="sm">
                     <Download className="mr-2 h-4 w-4" />
                     Export Report
                   </Button>
@@ -187,24 +187,24 @@ export default function AdminDashboard() {
               </Card>
 
               {/* Quick Actions */}
-              <Card className="card-enhanced">
+              <Card>
                 <CardHeader>
                   <CardTitle>Quick Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button className="w-full justify-start rounded-2xl hover:scale-[1.02] transition-all duration-300" variant="outline">
+                  <Button className="w-full justify-start" variant="outline">
                     <Plus className="mr-2 h-4 w-4" />
                     Add New Room
                   </Button>
-                  <Button className="w-full justify-start rounded-2xl hover:scale-[1.02] transition-all duration-300" variant="outline">
+                  <Button className="w-full justify-start" variant="outline">
                     <Calendar className="mr-2 h-4 w-4" />
                     Schedule Maintenance
                   </Button>
-                  <Button className="w-full justify-start rounded-2xl hover:scale-[1.02] transition-all duration-300" variant="outline">
+                  <Button className="w-full justify-start" variant="outline">
                     <MessageSquare className="mr-2 h-4 w-4" />
                     Send Bulk Notification
                   </Button>
-                  <Button className="w-full justify-start rounded-2xl hover:scale-[1.02] transition-all duration-300" variant="outline">
+                  <Button className="w-full justify-start" variant="outline">
                     <Download className="mr-2 h-4 w-4" />
                     Generate Reports
                   </Button>
@@ -216,8 +216,8 @@ export default function AdminDashboard() {
           {/* Inquiries Tab */}
           <TabsContent value="inquiries" className="space-y-6">
             <div className="flex justify-between items-center">
-              <h3 className="heading-md">Recent Inquiries</h3>
-              <Button className="rounded-2xl hover:scale-105 transition-all duration-300">
+              <h3 className="text-xl font-semibold">Recent Inquiries</h3>
+              <Button>
                 <MessageSquare className="mr-2 h-4 w-4" />
                 View All
               </Button>
@@ -225,17 +225,14 @@ export default function AdminDashboard() {
 
             <div className="space-y-4">
               {recentInquiries.map((inquiry) => (
-                <Card key={inquiry.id} className="card-enhanced">
+                <Card key={inquiry.id}>
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div>
                         <h4 className="font-semibold text-foreground">{inquiry.name}</h4>
                         <p className="text-sm text-muted-foreground">{inquiry.email}</p>
                       </div>
-                      <Badge 
-                        variant={inquiry.status === "pending" ? "destructive" : "default"}
-                        className="rounded-2xl"
-                      >
+                      <Badge variant={inquiry.status === "pending" ? "destructive" : "default"}>
                         {inquiry.status}
                       </Badge>
                     </div>
@@ -253,7 +250,7 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="flex gap-2 mt-4">
-                      <Button size="sm" variant="outline" className="rounded-2xl hover:scale-105 transition-all duration-300">
+                      <Button size="sm" variant="outline">
                         <Eye className="mr-2 h-4 w-4" />
                         View
                       </Button>
@@ -271,8 +268,8 @@ export default function AdminDashboard() {
           {/* Reviews Tab */}
           <TabsContent value="reviews" className="space-y-6">
             <div className="flex justify-between items-center">
-              <h3 className="heading-md">Recent Reviews</h3>
-              <Button className="rounded-2xl hover:scale-105 transition-all duration-300">
+              <h3 className="text-xl font-semibold">Recent Reviews</h3>
+              <Button>
                 <Star className="mr-2 h-4 w-4" />
                 View All
               </Button>
@@ -280,7 +277,7 @@ export default function AdminDashboard() {
 
             <div className="space-y-4">
               {recentReviews.map((review) => (
-                <Card key={review.id} className="card-enhanced">
+                <Card key={review.id}>
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div>
@@ -296,10 +293,7 @@ export default function AdminDashboard() {
                             />
                           ))}
                         </div>
-                        <Badge 
-                          variant={review.status === "pending" ? "destructive" : "default"}
-                          className="rounded-2xl"
-                        >
+                        <Badge variant={review.status === "pending" ? "destructive" : "default"}>
                           {review.status}
                         </Badge>
                       </div>
@@ -310,11 +304,11 @@ export default function AdminDashboard() {
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">{review.date}</span>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline" className="rounded-2xl hover:scale-105 transition-all duration-300">
+                        <Button size="sm" variant="outline">
                           <Edit className="mr-2 h-4 w-4" />
                           Approve
                         </Button>
-                        <Button size="sm" variant="outline" className="rounded-2xl hover:scale-105 transition-all duration-300">
+                        <Button size="sm" variant="outline">
                           <Trash2 className="mr-2 h-4 w-4" />
                           Reject
                         </Button>
@@ -329,24 +323,24 @@ export default function AdminDashboard() {
           {/* Rooms Tab */}
           <TabsContent value="rooms" className="space-y-6">
             <div className="flex justify-between items-center">
-              <h3 className="heading-md">Room Management</h3>
+              <h3 className="text-xl font-semibold">Room Management</h3>
               <Button className="btn-hero">
                 <Plus className="mr-2 h-4 w-4" />
                 Add New Room
               </Button>
             </div>
 
-            <Card className="card-enhanced">
+            <Card>
               <CardContent className="p-6">
                 <div className="text-center py-12">
                   <Building2 className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
-                  <h4 className="heading-md text-foreground mb-2">
+                  <h4 className="text-xl font-semibold text-foreground mb-2">
                     Room Management Coming Soon
                   </h4>
-                  <p className="body-base text-muted-foreground mb-6">
+                  <p className="text-muted-foreground mb-6">
                     This section will allow you to add, edit, and manage room listings with full CRUD operations.
                   </p>
-                  <Button variant="outline" className="rounded-2xl hover:scale-105 transition-all duration-300">
+                  <Button variant="outline">
                     Learn More
                   </Button>
                 </div>

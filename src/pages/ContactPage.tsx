@@ -29,7 +29,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -54,20 +54,20 @@ export default function ContactPage() {
     setIsSubmitting(false);
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gradient-to-r from-primary-light to-accent-light dark:from-primary-light/10 dark:to-accent-light/10 py-16">
+      <section className="bg-gradient-to-r from-primary-light to-accent-light py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h1 className="heading-xl text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Get in Touch
             </h1>
-            <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Have questions about our dormitory? We're here to help you find your perfect home away from home.
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="lg:col-span-1">
-            <Card className="card-enhanced mb-8">
+            <Card className="mb-8">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MessageSquare className="h-5 w-5 text-primary" />
@@ -127,11 +127,39 @@ export default function ContactPage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Quick Response Times */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5 text-accent" />
+                  Response Times
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">General Inquiries</span>
+                  <span className="font-medium text-foreground">24 hours</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Room Availability</span>
+                  <span className="font-medium text-foreground">4 hours</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Tour Requests</span>
+                  <span className="font-medium text-foreground">Same day</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Emergency</span>
+                  <span className="font-medium text-foreground">Immediate</span>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="card-enhanced">
+            <Card>
               <CardHeader>
                 <CardTitle>Send us a Message</CardTitle>
                 <p className="text-muted-foreground">
@@ -149,7 +177,6 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={(e) => handleInputChange("name", e.target.value)}
                         placeholder="Enter your full name"
-                        className="rounded-2xl"
                         required
                       />
                     </div>
@@ -161,9 +188,69 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={(e) => handleInputChange("email", e.target.value)}
                         placeholder="Enter your email"
-                        className="rounded-2xl"
                         required
                       />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="phone">Phone Number</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        placeholder="(555) 123-4567"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="preferredContact">Preferred Contact Method</Label>
+                      <Select value={formData.preferredContact} onValueChange={(value) => handleInputChange("preferredContact", value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select contact method" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="email">Email</SelectItem>
+                          <SelectItem value="phone">Phone</SelectItem>
+                          <SelectItem value="either">Either</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  {/* Inquiry Details */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="inquiryType">Inquiry Type *</Label>
+                      <Select value={formData.inquiryType} onValueChange={(value) => handleInputChange("inquiryType", value)} required>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select inquiry type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="general">General Information</SelectItem>
+                          <SelectItem value="room-availability">Room Availability</SelectItem>
+                          <SelectItem value="tour">Schedule Tour</SelectItem>
+                          <SelectItem value="pricing">Pricing & Fees</SelectItem>
+                          <SelectItem value="amenities">Amenities & Services</SelectItem>
+                          <SelectItem value="application">Application Process</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="roomPreference">Room Preference</Label>
+                      <Select value={formData.roomPreference} onValueChange={(value) => handleInputChange("roomPreference", value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select room type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="single">Single Occupancy</SelectItem>
+                          <SelectItem value="double">Double Occupancy</SelectItem>
+                          <SelectItem value="triple">Triple Occupancy</SelectItem>
+                          <SelectItem value="suite">Suite with Kitchenette</SelectItem>
+                          <SelectItem value="no-preference">No Preference</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
 
@@ -175,7 +262,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={(e) => handleInputChange("message", e.target.value)}
                       placeholder="Tell us about your housing needs, questions, or any specific requirements..."
-                      className="min-h-[120px] rounded-2xl"
+                      className="min-h-[120px]"
                       required
                     />
                   </div>
@@ -200,6 +287,33 @@ export default function ContactPage() {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* Additional Information */}
+        <div className="mt-16">
+          <Card>
+            <CardContent className="p-8">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Need Immediate Assistance?
+                </h3>
+                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                  For urgent matters or immediate assistance, don't hesitate to call our 24/7 support line. 
+                  Our friendly staff is always ready to help with any questions or concerns.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button variant="outline" size="lg">
+                    <Phone className="mr-2 h-4 w-4" />
+                    Call (555) 123-4567
+                  </Button>
+                  <Button className="btn-accent" size="lg">
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    Live Chat
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
