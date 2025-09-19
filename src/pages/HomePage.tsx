@@ -258,24 +258,24 @@ function HomePage() {
             </p>
           </div>
           
-          <div className="flex gap-8 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-muted-foreground/30 scrollbar-track-transparent">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-border/50 p-6 min-w-[320px] max-w-[340px] flex-shrink-0 flex flex-col justify-between">
+              <Card key={index} className="border border-border/30 p-6 flex flex-col justify-between h-full">
                 <CardContent className="p-0 flex flex-col h-full">
                   <div className="flex items-center gap-4 mb-4">
                     {testimonial.avatar ? (
                       <img
                         src={testimonial.avatar}
                         alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover border-2 border-primary"
+                        className="w-14 h-14 rounded-full object-cover border-2 border-blue-400"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-lg font-bold text-primary border-2 border-primary">
+                      <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-lg font-bold text-primary border-2 border-primary">
                         {testimonial.initials}
                       </div>
                     )}
                     <div>
-                      <div className="font-semibold text-foreground">{testimonial.name}</div>
+                      <div className="font-semibold text-foreground text-lg">{testimonial.name}</div>
                       <div className="text-sm text-muted-foreground">{testimonial.role}</div>
                     </div>
                   </div>
@@ -283,7 +283,7 @@ function HomePage() {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-4 w-4 ${i < testimonial.rating ? 'text-accent fill-current' : 'text-muted-foreground'}`}
+                        className={`h-5 w-5 ${i < testimonial.rating ? 'text-orange-400 fill-current' : 'text-muted-foreground'}`}
                       />
                     ))}
                   </div>

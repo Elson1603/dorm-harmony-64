@@ -103,7 +103,7 @@ export function RoomCard({ room, className }: RoomCardProps) {
       </CardContent>
 
       <CardFooter className="p-4 pt-0 space-x-2">
-        <Link to={`/rooms/${room.id}`} className="flex-1">
+        <Link to="/location" className="flex-1">
           <Button variant="outline" className="w-full">
             View Details
           </Button>

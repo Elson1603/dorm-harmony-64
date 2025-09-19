@@ -212,3 +212,18 @@ All colors MUST be HSL.
     transform: scale(1);
   }
 }
+
+@layer components {
+  .nav-link {
+    @apply relative overflow-hidden;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute h-[2px] w-0 left-1/2 -translate-x-1/2 bottom-0 
+           bg-primary rounded-full transition-all duration-300;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
