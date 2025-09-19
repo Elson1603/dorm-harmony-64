@@ -305,13 +305,13 @@ function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-3 bg-white text-primary hover:bg-gray-100">
                 <Clock className="mr-2 h-5 w-5" />
                 Schedule Tour
               </Button>
             </Link>
             <Link to="/rooms">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3">
+              <Button size="lg" variant="outline" className="text-lg px-8 py-3 bg-white text-primary ">
                 <Building2 className="mr-2 h-5 w-5" />
                 Browse Rooms
               </Button>

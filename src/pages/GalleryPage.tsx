@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,86 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Tabs, Tabs      <Dialog open={!!selectedImage} onOpenChange={() => {
-        setSelectedImage(null);
-        setZoomLevel(1);
-        setRotation(0);
-      }}>
-        <DialogContent className="max-w-5xl">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              {selectedImage?.title}
-              <Badge variant="outline" className="ml-2">Interactive View</Badge>
-            </DialogTitle>
-            <DialogDescription>
-              {selectedImage?.description}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="mt-4 relative bg-muted rounded-lg overflow-hidden">
-            <div className="aspect-video relative overflow-hidden">
-              {selectedImage && (
-                <img
-                  src={selectedImage.image}
-                  alt={selectedImage.title}
-                  className="object-contain w-full h-full transition-all duration-300"
-                  style={{
-                    transform: `scale(${zoomLevel}) rotate(${rotation}deg)`,
-                    transformOrigin: 'center',
-                  }}
-                />
-              )}
-            </div>
-            
-            {/* Controls */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-full p-2">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setZoomLevel(Math.max(1, zoomLevel - 0.2))}
-                className="rounded-full"
-              >
-                <ZoomOut className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setZoomLevel(Math.min(3, zoomLevel + 0.2))}
-                className="rounded-full"
-              >
-                <ZoomIn className="h-4 w-4" />
-              </Button>
-              <div className="w-px h-6 bg-border mx-2" />
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setRotation((prev) => prev - 90)}
-                className="rounded-full"
-              >
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setRotation((prev) => prev + 90)}
-                className="rounded-full"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => {
-                  setRotation(0);
-                  setZoomLevel(1);
-                }}
-                className="rounded-full"
-              >
-                <RotateCw className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Carousel,
   CarouselContent,
@@ -94,40 +15,58 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import {
-  Camera,
-  Image as ImageIcon,
-  ZoomIn,
-  ZoomOut,
-  RotateCw,
-  ArrowLeft,
-  ArrowRight,
-  Info
-} from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import { useToast } from "@/components/ui/use-toast";
+import { Camera, Image as ImageIcon, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 
-// Mock data - Replace with actual images later
+// Mock data with enhanced details
 const galleryData = {
   rooms: [
     {
       id: 1,
       title: "Deluxe Single Room",
+      description: "Spacious and modern single occupancy room with premium amenities",
       image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop",
-      category: "rooms"
+      category: "rooms",
+      features: ["Air Conditioning", "Study Desk", "Private Bathroom"],
+      size: "200 sq ft",
+      views: ["City View", "Garden View"],
+      images: [
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop"
+      ]
     },
     {
       id: 2,
       title: "Twin Share Room",
+      description: "Comfortable shared room perfect for collaborative living",
       image: "https://images.unsplash.com/photo-1520277739336-7bf67edfa768?w=800&auto=format&fit=crop",
-      category: "rooms"
+      category: "rooms",
+      features: ["Two Study Desks", "Shared Bathroom", "Large Windows"],
+      size: "300 sq ft",
+      views: ["Campus View"],
+      images: [
+        "https://images.unsplash.com/photo-1520277739336-7bf67edfa768?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop"
+      ]
     },
     {
       id: 3,
       title: "Premium Suite",
+      description: "Luxury accommodation with exclusive amenities",
       image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&auto=format&fit=crop",
-      category: "rooms"
+      category: "rooms",
+      features: ["Kitchenette", "Private Balcony", "En-suite Bathroom"],
+      size: "400 sq ft",
+      views: ["Panoramic City View", "Mountain View"],
+      images: [
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1520277739336-7bf67edfa768?w=800&auto=format&fit=crop"
+      ]
     }
   ],
   common: [
@@ -173,47 +112,48 @@ const galleryData = {
 };
 
 const GalleryPage = () => {
-  const { toast } = useToast();
   const [selectedImage, setSelectedImage] = useState<{
     image: string;
     title: string;
     description?: string;
+    features?: string[];
+    size?: string;
+    views?: string[];
+    images?: string[];
+    currentImageIndex?: number;
   } | null>(null);
-  const [zoomLevel, setZoomLevel] = useState(1);
-  const [rotation, setRotation] = useState(0);
-  const [showInfo, setShowInfo] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("rooms");
+  const [currentView, setCurrentView] = useState<"grid" | "slideshow">("grid");
+  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
+  
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
-  // 3D card effect
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const { left, top, width, height } = card.getBoundingClientRect();
-      const x = e.clientX - left;
-      const y = e.clientY - top;
-
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    };
-
-    const handleMouseLeave = () => {
-      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-    };
-
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    mode: "snap",
+    rtl: false,
+    slides: {
+      perView: 1.2,
+      spacing: 16,
+    },
+    breakpoints: {
+      "(min-width: 768px)": {
+        slides: { perView: 2.2, spacing: 24 },
+      },
+      "(min-width: 1024px)": {
+        slides: { perView: 3.2, spacing: 32 },
+      },
+    },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    created() {
+      setLoaded(true);
+    },
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -246,108 +186,200 @@ const GalleryPage = () => {
               {/* Featured Carousel */}
               <div className="mb-12">
                 <h3 className="text-2xl font-semibold mb-6">Featured {category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {images.map((item) => (
-                      <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                        <div 
-                          className="relative aspect-video cursor-pointer overflow-hidden rounded-lg"
-                          onClick={() => setSelectedImage({ image: item.image, title: item.title })}
-                        >
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="object-cover w-full h-full transition-transform hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                            <h4 className="text-white text-xl font-semibold">{item.title}</h4>
-                          </div>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="hidden md:flex" />
-                  <CarouselNext className="hidden md:flex" />
-                </Carousel>
-              </div>
-
-              {/* Grid Gallery */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {images.map((item) => (
-                  <Card
-                    key={item.id}
-                    className="relative overflow-hidden rounded-lg bg-muted hover:shadow-xl transition-all duration-300 flex flex-col"
-                    ref={cardRef}
-                    style={{ transformStyle: 'preserve-3d', transition: 'transform 0.1s' }}
-                  >
-                    <div className="relative aspect-[4/3]">
+                <motion.div
+                  className="keen-slider h-[400px] rounded-xl overflow-hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  {images.map((item, idx) => (
+                    <motion.div
+                      key={item.id}
+                      className="keen-slider__slide relative cursor-pointer"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                      onClick={() => setSelectedImage({ ...item, currentImageIndex: 0 })}
+                    >
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="object-cover w-full h-full transition-transform duration-500"
+                        className="w-full h-full object-cover"
                       />
-                    </div>
-                    <div className="flex flex-col gap-2 p-4">
-                      <h4 className="text-lg font-semibold mb-1 text-foreground">{item.title}</h4>
-                      <div className="flex gap-2 mb-2">
-                        <Badge variant="outline" className="bg-primary/20 text-primary capitalize">
-                          {item.category}
-                        </Badge>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <h4 className="text-white text-xl font-semibold">{item.title}</h4>
                       </div>
-                      <div className="flex gap-2">
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={() => {
-                            setSelectedImage({
-                              image: item.image,
-                              title: item.title,
-                              description: "Explore this space in detail. Use the controls to zoom and rotate the image."
-                            });
-                            toast({
-                              title: "Image Viewer Opened",
-                              description: "Use the controls below to interact with the image",
-                            });
-                          }}
-                          className="bg-primary/90 text-white hover:bg-primary"
-                        >
-                          <ZoomIn className="mr-2 h-4 w-4" />
-                          View Details
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-primary text-primary hover:bg-primary/10"
-                          onClick={() => setShowInfo(!showInfo)}
-                        >
-                          <Info className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
+
+              {/* Grid Gallery */}
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ staggerChildren: 0.1 }}
+              >
+                {images.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    className="group relative overflow-hidden rounded-lg aspect-[4/3] bg-muted"
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="object-cover w-full h-full"
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-black/60 flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      <Button
+                        variant="secondary"
+                        size="lg"
+                        onClick={() => setSelectedImage({ ...item, currentImageIndex: 0 })}
+                        className="text-white scale-90 hover:scale-100 transition-transform"
+                      >
+                        <ImageIcon className="mr-2 h-4 w-4" />
+                        View Larger
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </motion.div>
             </TabsContent>
           ))}
         </Tabs>
       </div>
 
       {/* Image Preview Dialog */}
-      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-5xl">
+      <Dialog 
+        open={!!selectedImage} 
+        onOpenChange={() => setSelectedImage(null)}
+        className="max-w-7xl mx-auto"
+      >
+        <DialogContent className="max-w-7xl w-full">
           <DialogHeader>
-            <DialogTitle>{selectedImage?.title}</DialogTitle>
+            <DialogTitle className="flex items-center justify-between">
+              <span className="text-2xl">{selectedImage?.title}</span>
+              <div className="flex items-center gap-2">
+                {selectedImage?.size && (
+                  <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full">
+                    {selectedImage.size}
+                  </span>
+                )}
+                {selectedImage?.views?.map((view, idx) => (
+                  <span 
+                    key={idx}
+                    className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full"
+                  >
+                    {view}
+                  </span>
+                ))}
+              </div>
+            </DialogTitle>
             <DialogDescription>
-              Use arrow keys or click the navigation buttons to browse images
+              {selectedImage?.description}
             </DialogDescription>
           </DialogHeader>
-          <div className="mt-4 relative aspect-video bg-muted rounded-lg overflow-hidden">
-            {selectedImage && (
-              <img
-                src={selectedImage.image}
-                alt={selectedImage.title}
-                className="object-contain w-full h-full transition-opacity"
-              />
+
+          <div className="mt-4 space-y-4">
+            {/* Main Image */}
+            <div className="relative aspect-video bg-muted rounded-lg overflow-hidden group">
+              <AnimatePresence mode="wait">
+                {selectedImage && (
+                  <motion.img
+                    key={selectedImage.images?.[selectedImage.currentImageIndex || 0] || selectedImage.image}
+                    src={selectedImage.images?.[selectedImage.currentImageIndex || 0] || selectedImage.image}
+                    alt={selectedImage.title}
+                    className="object-contain w-full h-full"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </AnimatePresence>
+
+              {/* Navigation Controls */}
+              {selectedImage?.images && selectedImage.images.length > 1 && (
+                <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full bg-background/80 backdrop-blur-sm"
+                    onClick={() => {
+                      if (selectedImage.currentImageIndex === undefined) return;
+                      const newIndex = selectedImage.currentImageIndex === 0 
+                        ? selectedImage.images!.length - 1 
+                        : selectedImage.currentImageIndex - 1;
+                      setSelectedImage({
+                        ...selectedImage,
+                        currentImageIndex: newIndex
+                      });
+                    }}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full bg-background/80 backdrop-blur-sm"
+                    onClick={() => {
+                      if (selectedImage.currentImageIndex === undefined) return;
+                      const newIndex = (selectedImage.currentImageIndex + 1) % selectedImage.images!.length;
+                      setSelectedImage({
+                        ...selectedImage,
+                        currentImageIndex: newIndex
+                      });
+                    }}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            {/* Thumbnails */}
+            {selectedImage?.images && selectedImage.images.length > 1 && (
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {selectedImage.images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    className={`relative rounded-lg overflow-hidden flex-shrink-0 w-24 h-16 ${
+                      selectedImage.currentImageIndex === idx ? 'ring-2 ring-primary' : ''
+                    }`}
+                    onClick={() => setSelectedImage({
+                      ...selectedImage,
+                      currentImageIndex: idx
+                    })}
+                  >
+                    <img
+                      src={img}
+                      alt={`${selectedImage.title} view ${idx + 1}`}
+                      className="object-cover w-full h-full"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Features */}
+            {selectedImage?.features && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                {selectedImage.features.map((feature, idx) => (
+                  <div 
+                    key={idx}
+                    className="flex items-center gap-2 p-3 rounded-lg bg-muted"
+                  >
+                    <span className="text-sm">{feature}</span>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         </DialogContent>

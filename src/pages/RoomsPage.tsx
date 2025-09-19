@@ -142,17 +142,19 @@ export default function RoomsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gradient-to-r from-primary-light to-accent-light py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Find Your Perfect <span className="gradient-word animate-gradient">Room</span>
-            </h1>
-            <p className="text-xl text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">
-              Browse our available dormitory rooms and find the perfect space for your academic journey. 
-              Live, learn, and thrive in our modern accommodations.
-            </p>
-          </div>
+      <section
+        className="py-16 bg-cover bg-center text-white"
+        style={{
+          backgroundImage: "url(https://i.pinimg.com/736x/12/2c/45/122c45831e75935574afe7a3163f626a.jpg)",
+        }}
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Find Your Perfect <span className="text-orange-500">Room</span>
+          </h1>
+          <p className="text-xl max-w-2xl mx-auto leading-relaxed">
+            Browse our available dormitory rooms and find the perfect space for your academic journey. Live, learn, and thrive in our modern accommodations.
+          </p>
         </div>
       </section>
 

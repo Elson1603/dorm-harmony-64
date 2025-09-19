@@ -13,6 +13,10 @@ import NotFound from "./pages/NotFound";
 import LocationPage from "./pages/LocationPage";
 import ReviewsPage from "./pages/ReviewsPage";
 import FAQPage from "./pages/FAQPage";
+import Gallery from "./pages/Gallery";
+
+
+
 
 const queryClient = new QueryClient();
 
@@ -34,6 +38,7 @@ const App = () => (
             <Route path="/faq" element={<FAQPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

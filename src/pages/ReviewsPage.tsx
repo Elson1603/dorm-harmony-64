@@ -45,11 +45,16 @@ export const ReviewsPage = () => {
     
     setIsSubmitting(true);
     try {
+      // Alternate between male and female avatars for variety
+      const isFemale = Math.random() > 0.5;
+      const avatarUrl = isFemale
+        ? `https://randomuser.me/api/portraits/women/${Math.floor(Math.random()*90)}.jpg`
+        : `https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*90)}.jpg`;
       const newReview = ReviewsService.addReview({
         name: formData.name,
         rating,
         review: formData.review,
-        avatarUrl: "/placeholder.svg",
+        avatarUrl,
       });
       
       setReviews(prev => [newReview, ...prev]);
