@@ -133,9 +133,9 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  /* Room card animations */
+  /* Enhanced room card animations */
   .room-card {
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-300 ease-out rounded-2xl border-border/50 overflow-hidden;
     box-shadow: var(--shadow-card);
   }
   
@@ -144,29 +144,58 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-card-hover);
   }
 
-  /* Feature card styles */
+  /* Enhanced feature card styles */
   .feature-card {
-    @apply bg-gradient-to-br from-primary-light to-white border border-border/50;
+    @apply bg-gradient-to-br from-primary-light to-background border border-border/50 rounded-2xl p-6;
+    @apply hover:shadow-lg hover:scale-[1.02] transition-all duration-300;
     box-shadow: var(--shadow-feature);
   }
 
-  /* Button variants */
+  /* Enhanced button variants */
   .btn-hero {
-    @apply bg-gradient-to-r from-primary to-primary-dark text-primary-foreground 
-           hover:shadow-lg hover:scale-105 transition-all duration-300;
+    @apply bg-gradient-to-r from-primary to-primary-dark text-primary-foreground rounded-2xl;
+    @apply hover:shadow-xl hover:scale-105 hover:shadow-primary/25 transition-all duration-300;
+    @apply active:scale-[1.02] active:shadow-lg;
   }
 
   .btn-accent {
-    @apply bg-gradient-to-r from-accent to-accent-dark text-accent-foreground
-           hover:shadow-lg hover:scale-105 transition-all duration-300;
+    @apply bg-gradient-to-r from-accent to-accent-dark text-accent-foreground rounded-2xl;
+    @apply hover:shadow-xl hover:scale-105 hover:shadow-accent/25 transition-all duration-300;
+    @apply active:scale-[1.02] active:shadow-lg;
   }
 
-  /* Typography */
+  /* Enhanced typography */
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
   }
 
-  /* Animations */
+  .heading-xl {
+    @apply text-4xl md:text-5xl font-bold leading-tight tracking-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold leading-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-semibold leading-snug;
+  }
+
+  .body-lg {
+    @apply text-lg md:text-xl leading-relaxed;
+  }
+
+  .body-base {
+    @apply text-base leading-relaxed;
+  }
+
+  /* Enhanced card styles */
+  .card-enhanced {
+    @apply bg-card border border-border/50 rounded-2xl shadow-lg;
+    @apply hover:shadow-xl hover:scale-[1.01] transition-all duration-300;
+  }
+
+  /* Enhanced animations */
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out;
   }
@@ -177,6 +206,10 @@ All colors MUST be HSL.
 
   .animate-bounce-in {
     animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
   }
 }
 
@@ -206,6 +239,17 @@ All colors MUST be HSL.
   from {
     opacity: 0;
     transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
