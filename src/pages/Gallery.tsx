@@ -142,6 +142,24 @@ const Gallery = () => {
           ))}
         </div>
       </div>
+
+      {/* Call to Action Section */}
+      <section className="py-16 bg-blue-500 dark:bg-blue-900 text-white text-center">
+  <h2 className="text-4xl font-bold mb-4">
+    Ready to Make DormHub Your Home?
+  </h2>
+  <p className="text-lg mb-8">
+    Join hundreds of students who have chosen DormHub for their academic journey. Secure your spot today!
+  </p>
+  <div className="flex justify-center gap-4">
+    <button className="px-6 py-3 bg-white text-blue-900 rounded-lg shadow-md hover:bg-gray-100">
+      Schedule Tour
+    </button>
+    <button className="px-6 py-3 bg-white text-blue-900 rounded-lg shadow-md hover:bg-gray-100">
+      Browse Rooms
+    </button>
+  </div>
+</section>
     </div>
   );
 };

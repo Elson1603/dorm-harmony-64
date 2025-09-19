@@ -14,6 +14,7 @@ import LocationPage from "./pages/LocationPage";
 import ReviewsPage from "./pages/ReviewsPage";
 import FAQPage from "./pages/FAQPage";
 import Gallery from "./pages/Gallery";
+import AdminLogin from "./pages/AdminLogin"; // import your login page
 
 
 
@@ -28,18 +29,17 @@ const App = () => (
         <BrowserRouter>
           <Navigation />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/rooms" element={<RoomsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/location" element={<LocationPage />} />
-            <Route path="/reviews" element={<ReviewsPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-            
-<Route path="/gallery" element={<Gallery />} />
-          </Routes>
+  <Route path="/" element={<HomePage />} />
+  <Route path="/rooms" element={<RoomsPage />} />
+  <Route path="/contact" element={<ContactPage />} />
+  <Route path="/admin" element={<AdminLogin />} /> {/* show login page */}
+  <Route path="/admin-dashboard" element={<AdminDashboard />} /> {/* show dashboard after login */}
+  <Route path="/location" element={<LocationPage />} />
+  <Route path="/reviews" element={<ReviewsPage />} />
+  <Route path="/faq" element={<FAQPage />} />
+  <Route path="/gallery" element={<Gallery />} />
+  <Route path="*" element={<NotFound />} />
+</Routes>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
