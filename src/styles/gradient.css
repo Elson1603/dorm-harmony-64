@@ -1,0 +1,28 @@
+.gradient-word {
+  background: linear-gradient(
+    to right,
+    #4169E1 0%,   /* Royal Blue */
+    #6495ED 20%,  /* Cornflower Blue */
+    #9370DB 40%,  /* Medium Purple */
+    #DDA0DD 60%,  /* Plum */
+    #FFA07A 80%,  /* Light Salmon */
+    #FF7F50 100%  /* Coral */
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.animate-gradient {
+  background-size: 400% auto;
+  animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 200% 50%; }
+  75% { background-position: 300% 50%; }
+  100% { background-position: 0% 50%; }
+}

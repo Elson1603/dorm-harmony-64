@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { RoomCard } from "@/components/RoomCard";
+import "@/styles/gradient.css";
 import { 
   Building2, 
   Users, 
@@ -16,7 +17,12 @@ import {
   MapPin,
   Clock
 } from "lucide-react";
-import heroImage from "@/assets/hero-dormitory.jpg";
+import heroImage from "@/assets/hero-building.jpg";
+// If you want to use the new building image, place it in assets and import as:
+// import heroBg from "@/assets/your-building-image.jpg";
+import deluxeRoomImage from "@/assets/Deluxe-Single-thumb.jpg";
+
+
 
 // Mock data for featured rooms
 const featuredRooms = [
@@ -27,7 +33,7 @@ const featuredRooms = [
     price: 850,
     capacity: 1,
     available: true,
-    image: "/dorm-harmony-64/public/Deluxe-Single-thumb.jpg",
+    image: "https://i.pinimg.com/736x/31/07/56/3107562a18e538b6c91900980a0455bf.jpg",
     amenities: ["Wi-Fi", "AC", "Parking"],
     rating: 4.8,
     reviews: 124,
@@ -40,7 +46,7 @@ const featuredRooms = [
     price: 650,
     capacity: 2,
     available: true,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/de/17/c2/de17c217ce90ea7ecb1f23b98f24087c.jpg",
     amenities: ["Wi-Fi", "AC", "Study Desk"],
     rating: 4.6,
     reviews: 89,
@@ -53,7 +59,7 @@ const featuredRooms = [
     price: 1200,
     capacity: 1,
     available: false,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/49/b8/da/49b8da5a068eebcb772f6964ee019cf1.jpg",
     amenities: ["Wi-Fi", "AC", "Parking", "Kitchen"],
     rating: 4.9,
     reviews: 67,
@@ -96,83 +102,89 @@ const features = [
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "Computer Science Student",
-    content: "Living here has been amazing! The facilities are top-notch and the community is very welcoming.",
+    name: "Sarah Chen",
+    role: "Computer Science, Senior",
+    content: "Living at CampusView has been incredible! The community is so welcoming, and the study rooms are perfect for group projects. Plus, being able to walk to campus in 5 minutes is a game-changer.",
     rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    initials: null
   },
   {
-    name: "Michael Chen",
-    role: "Business Administration",
-    content: "Great location, clean rooms, and excellent support staff. Highly recommend to any student.",
+    name: "Marcus Johnson",
+    role: "Business Administration, Junior",
+    content: "The amenities here are top-notch. The gym is always clean, WiFi is super fast, and the common areas are great for meeting new people. I've made lifelong friends here!",
     rating: 5,
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    initials: null
   },
   {
     name: "Emma Rodriguez",
-    role: "Pre-Med Student",
-    content: "The study spaces and quiet environment really help with my studies. Perfect for academic focus.",
-    rating: 4,
+    role: "Psychology, Sophomore",
+    content: "The staff is so responsive and helpful. When I had an issue with my room, it was fixed the same day! The location is perfect for both campus and downtown activities.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    initials: null
+  },
+  {
+    name: "David Park",
+    role: "Engineering, Graduate Student",
+    content: "As a grad student, I appreciate the quiet study environments and the mix of undergrad and graduate residents. The premium suites are worth every penny for the extra space and kitchen.",
+    rating: 5,
+    avatar: "https://randomuser.me/api/portraits/men/85.jpg",
+    initials: null
   },
 ];
 
-export default function HomePage() {
+function HomePage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        <div 
+      {/* Hero Section - matches provided image */}
+      <section className="relative h-[700px] flex flex-col items-center justify-center overflow-hidden">
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Your Home Away From Home
+        <div className="relative z-10 flex flex-col items-center justify-center w-full px-4">
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-4 text-white text-center drop-shadow-lg">
+            Your Home Away From <span className="bg-gradient-to-r from-blue-500 to-orange-400 bg-clip-text text-transparent">Home</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-white/90 animate-slide-up">
-            Modern, comfortable, and affordable dormitory living for students. 
-            Experience community, convenience, and academic excellence.
+          <p className="text-xl md:text-2xl mb-8 text-white/90 text-center max-w-2xl mx-auto drop-shadow">
+            Experience comfortable, modern living at CampusView Dormitories. Where students thrive, friendships bloom, and memories are made.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-bounce-in">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/rooms">
-              <Button size="lg" className="btn-hero text-lg px-8 py-3">
-                Explore Rooms
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-3 shadow-lg">
+                Explore Rooms <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3">
-                Schedule Tour
-              </Button>
-            </Link>
+            <Button size="lg" variant="outline" className="bg-white/20 border border-white/60 text-white hover:bg-white/30 hover:text-white text-lg px-8 py-3 shadow-lg backdrop-blur">
+              Take Virtual Tour
+            </Button>
+          </div>
+          {/* Glassmorphic Feature Cards */}
+          <div className="flex flex-col md:flex-row gap-6 w-full max-w-4xl justify-center items-center">
+            <div className="flex-1 min-w-[260px] bg-white/20 backdrop-blur rounded-2xl p-6 flex flex-col items-center shadow-lg border border-white/30">
+              <MapPin className="text-orange-400 mb-2" size={32} />
+              <div className="font-bold text-lg text-white mb-1">Prime Location</div>
+              <div className="text-white/90 text-center text-sm">5 minutes walk to campus and city center</div>
+            </div>
+            <div className="flex-1 min-w-[260px] bg-white/20 backdrop-blur rounded-2xl p-6 flex flex-col items-center shadow-lg border border-white/30">
+              <Users className="text-blue-400 mb-2" size={32} />
+              <div className="font-bold text-lg text-white mb-1">Community Living</div>
+              <div className="text-white/90 text-center text-sm">Join 500+ students in our vibrant community</div>
+            </div>
+            <div className="flex-1 min-w-[260px] bg-white/20 backdrop-blur rounded-2xl p-6 flex flex-col items-center shadow-lg border border-white/30">
+              <Wifi className="text-green-400 mb-2" size={32} />
+              <div className="font-bold text-lg text-white mb-1">Modern Amenities</div>
+              <div className="text-white/90 text-center text-sm">High-speed WiFi, gym, study rooms & more</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Quick Stats */}
-      <section className="py-16 bg-primary-light/30">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">500+</div>
-              <div className="text-muted-foreground">Happy Residents</div>
-            </div>
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">120</div>
-              <div className="text-muted-foreground">Available Rooms</div>
-            </div>
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">4.8</div>
-              <div className="text-muted-foreground">Average Rating</div>
-            </div>
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-muted-foreground">Support Available</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ...existing code... (other sections remain below hero) */}
 
       {/* Features Section */}
       <section className="py-20">
@@ -190,14 +202,18 @@ export default function HomePage() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <Card key={index} className="feature-card border-0 p-6 text-center hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-0">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                <Card 
+                  key={index} 
+                  className="group relative overflow-hidden backdrop-blur-sm bg-gradient-to-br from-card/50 via-card to-primary/5 hover:from-primary/10 hover:to-primary/5 border border-border/50 transition-all duration-300 dark:shadow-lg dark:shadow-primary/5"
+                >
+                  <CardContent className="p-8 relative z-10">
+                    <div className="mb-6 p-4 rounded-xl bg-primary/10 w-fit mx-auto group-hover:bg-primary/20 transition-colors duration-300">
                       <Icon className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
+                    <h3 className="text-xl font-semibold mb-3 text-center text-foreground">{feature.title}</h3>
+                    <p className="text-muted-foreground/90 text-center leading-relaxed">{feature.description}</p>
                   </CardContent>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Card>
               );
             })}
@@ -242,23 +258,36 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="flex gap-8 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-muted-foreground/30 scrollbar-track-transparent">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-border/50 p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center mb-4">
+              <Card key={index} className="border-border/50 p-6 min-w-[320px] max-w-[340px] flex-shrink-0 flex flex-col justify-between">
+                <CardContent className="p-0 flex flex-col h-full">
+                  <div className="flex items-center gap-4 mb-4">
+                    {testimonial.avatar ? (
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        className="w-12 h-12 rounded-full object-cover border-2 border-primary"
+                      />
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-lg font-bold text-primary border-2 border-primary">
+                        {testimonial.initials}
+                      </div>
+                    )}
+                    <div>
+                      <div className="font-semibold text-foreground">{testimonial.name}</div>
+                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`h-4 w-4 ${i < testimonial.rating ? 'text-accent fill-current' : 'text-muted-foreground'}`} 
+                      <Star
+                        key={i}
+                        className={`h-4 w-4 ${i < testimonial.rating ? 'text-accent fill-current' : 'text-muted-foreground'}`}
                       />
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-4 italic">"{testimonial.content}"</p>
-                  <div>
-                    <div className="font-semibold text-foreground">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                  </div>
+                  <p className="text-muted-foreground italic flex-1">"{testimonial.content}"</p>
                 </CardContent>
               </Card>
             ))}
@@ -290,6 +319,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }
+
+export default HomePage;

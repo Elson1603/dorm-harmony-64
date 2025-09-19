@@ -64,10 +64,10 @@ export default function ContactPage() {
       <section className="bg-gradient-to-r from-primary-light to-accent-light py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Get in Touch
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Get in <span className="gradient-word animate-gradient">Touch</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">
               Have questions about our dormitory? We're here to help you find your perfect home away from home.
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   <Phone className="h-5 w-5 text-primary mt-1" />
                   <div>
                     <div className="font-medium text-foreground">Phone</div>
-                    <div className="text-muted-foreground">+1 (555) 123-4567</div>
+                    <div className="text-muted-foreground">+91 7058127966</div>
                     <div className="text-sm text-muted-foreground">Available 24/7</div>
                   </div>
                 </div>
@@ -109,8 +109,8 @@ export default function ContactPage() {
                   <div>
                     <div className="font-medium text-foreground">Address</div>
                     <div className="text-muted-foreground">
-                      123 University Drive<br />
-                      College Town, ST 12345
+                      Thadomal Shahani Engineering College, TPS-III, Linking Road, Bandra (West), <br />
+                     Mumbai - 400050, Maharashtra
                     </div>
                   </div>
                 </div>
@@ -201,7 +201,7 @@ export default function ContactPage() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => handleInputChange("phone", e.target.value)}
-                        placeholder="(555) 123-4567"
+                        placeholder="+91 7058127966"
                       />
                     </div>
                     <div>
@@ -304,7 +304,7 @@ export default function ContactPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button variant="outline" size="lg">
                     <Phone className="mr-2 h-4 w-4" />
-                    Call (555) 123-4567
+                   +91 7058127966
                   </Button>
                   <Button className="btn-accent" size="lg">
                     <MessageSquare className="mr-2 h-4 w-4" />

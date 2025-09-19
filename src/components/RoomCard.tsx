@@ -68,7 +68,7 @@ export function RoomCard({ room, className }: RoomCardProps) {
             <p className="text-sm text-muted-foreground">{room.type}</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-primary">${room.price}</p>
+            <p className="text-2xl font-bold text-primary">₹{room.price}</p>
             <p className="text-xs text-muted-foreground">per month</p>
           </div>
         </div>

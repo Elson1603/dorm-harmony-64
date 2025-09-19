@@ -23,7 +23,7 @@ const allRooms = [
     price: 850,
     capacity: 1,
     available: true,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/31/07/56/3107562a18e538b6c91900980a0455bf.jpg",
     amenities: ["Wi-Fi", "AC", "Parking", "Study Desk"],
     rating: 4.8,
     reviews: 124,
@@ -36,7 +36,7 @@ const allRooms = [
     price: 650,
     capacity: 2,
     available: true,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/de/17/c2/de17c217ce90ea7ecb1f23b98f24087c.jpg",
     amenities: ["Wi-Fi", "AC", "Study Desk", "Shared Bath"],
     rating: 4.6,
     reviews: 89,
@@ -49,7 +49,7 @@ const allRooms = [
     price: 1200,
     capacity: 1,
     available: false,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/e6/30/db/e630db9e931df9ea09a6090cf5dbfa89.jpg",
     amenities: ["Wi-Fi", "AC", "Parking", "Kitchen", "Private Bath"],
     rating: 4.9,
     reviews: 67,
@@ -62,7 +62,7 @@ const allRooms = [
     price: 550,
     capacity: 2,
     available: true,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/49/b8/da/49b8da5a068eebcb772f6964ee019cf1.jpg",
     amenities: ["Wi-Fi", "Study Desk", "Shared Bath"],
     rating: 4.3,
     reviews: 156,
@@ -75,7 +75,7 @@ const allRooms = [
     price: 450,
     capacity: 3,
     available: true,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/17/d0/85/17d08580706841e11dfb361390090998.jpg",
     amenities: ["Wi-Fi", "Study Desk", "Shared Bath", "Shared Kitchen"],
     rating: 4.1,
     reviews: 203,
@@ -88,7 +88,7 @@ const allRooms = [
     price: 950,
     capacity: 1,
     available: true,
-    image: "/placeholder.svg",
+    image: "https://i.pinimg.com/736x/52/09/35/520935f4c6ef597f75b0c9662d26824d.jpg",
     amenities: ["Wi-Fi", "AC", "Parking", "Private Bath", "Balcony"],
     rating: 4.7,
     reviews: 78,
@@ -145,11 +145,12 @@ export default function RoomsPage() {
       <section className="bg-gradient-to-r from-primary-light to-accent-light py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Find Your Perfect Room
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Find Your Perfect <span className="gradient-word animate-gradient">Room</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Browse our available dormitory rooms and find the perfect space for your academic journey
+            <p className="text-xl text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">
+              Browse our available dormitory rooms and find the perfect space for your academic journey. 
+              Live, learn, and thrive in our modern accommodations.
             </p>
           </div>
         </div>
@@ -251,7 +252,7 @@ export default function RoomsPage() {
               {priceRange.min > 0 && (
                 <Badge variant="outline" className="flex items-center gap-1">
                   <DollarSign className="h-3 w-3" />
-                  ${priceRange.min} - ${priceRange.max}
+                  ₹{priceRange.min} - ₹{priceRange.max}
                 </Badge>
               )}
             </div>
