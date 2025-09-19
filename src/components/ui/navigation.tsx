@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { 
   Home, 
   Building2, 
@@ -64,8 +65,9 @@ export function Navigation({ className }: NavigationProps) {
             })}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* CTA Button & Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-3">
+            <ThemeToggle />
             <Link to="/admin">
               <Button variant="outline" size="sm">
                 Admin Portal
@@ -78,15 +80,17 @@ export function Navigation({ className }: NavigationProps) {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          {/* Mobile Menu Button & Theme Toggle */}
+          <div className="flex items-center space-x-2 md:hidden">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
