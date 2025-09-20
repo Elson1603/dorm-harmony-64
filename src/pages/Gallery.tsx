@@ -102,46 +102,63 @@ const Gallery = () => {
       </div>
 
       {/* Features / Random Changes */}
-      <div className="px-6 py-16 bg-white shadow-md">
-      <h3 className="text-3xl font-bold text-center text-black mb-12">
-  Why Choose Us?
-</h3>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {features.map((feat, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-lg text-center"
-            >
-              <feat.icon className="mx-auto text-indigo-600 mb-4" size={40} />
-              <h4 className="text-xl font-semibold mb-2">{feat.title}</h4>
-              <p className="text-gray-600 text-sm">{feat.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      <div className="px-6 py-16 bg-white dark:bg-gray-900 shadow-md">
+  <h3 className="text-3xl font-bold text-center text-black dark:text-white mb-12">
+    Why Choose Us?
+  </h3>
+  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    {features.map((feat, idx) => (
+      <motion.div
+        key={idx}
+        whileHover={{ scale: 1.05 }}
+        className="p-6 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 shadow-lg text-center"
+      >
+        <feat.icon className="mx-auto text-indigo-600 dark:text-indigo-400 mb-4" size={40} />
+        <h4 className="text-xl font-semibold text-black dark:text-white mb-2">{feat.title}</h4>
+        <p className="text-gray-600 dark:text-gray-300 text-sm">{feat.desc}</p>
+      </motion.div>
+    ))}
+  </div>
+</div>
 
       {/* Room Gallery */}
-      <div className="px-6 py-12 max-w-7xl mx-auto">
-        <h3 className="text-3xl font-bold text-center mb-10">
-          Explore Our Rooms
-        </h3>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {galleryImages.map((url, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              className="overflow-hidden rounded-2xl shadow-lg"
-            >
-              <img
-                src={url}
-                alt={`Room ${idx + 1}`}
-                className="w-full h-60 object-cover"
-              />
-            </motion.div>
-          ))}
-        </div>
+      <div className="px-6 py-12 max-w-7xl mx-auto bg-white dark:bg-gray-900">
+  <h3 className="text-3xl font-bold text-center text-black dark:text-white mb-12">
+    Explore Our Rooms
+  </h3>
+  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+    {galleryImages.map((url, idx) => (
+      <div
+        key={idx}
+        className="overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800"
+      >
+        <img
+          src={url}
+          alt={`Room ${idx + 1}`}
+          className="w-full h-full object-cover transition-transform hover:scale-105"
+        />
       </div>
+    ))}
+  </div>
+</div>
+
+      {/* Call to Action Section */}
+      <section className="py-16 bg-blue-500 dark:bg-blue-900 text-white text-center">
+  <h2 className="text-4xl font-bold mb-4">
+    Ready to Make DormHub Your Home?
+  </h2>
+  <p className="text-lg mb-8">
+    Join hundreds of students who have chosen DormHub for their academic journey. Secure your spot today!
+  </p>
+  <div className="flex justify-center gap-4">
+    <button className="px-6 py-3 bg-white text-blue-900 rounded-lg shadow-md hover:bg-gray-100">
+      Schedule Tour
+    </button>
+    <button className="px-6 py-3 bg-white text-blue-900 rounded-lg shadow-md hover:bg-gray-100">
+      Browse Rooms
+    </button>
+  </div>
+</section>
     </div>
   );
 };
